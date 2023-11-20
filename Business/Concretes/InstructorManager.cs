@@ -20,14 +20,33 @@ namespace Business.Concretes
         {
             _instructordal= instructordal;
         }
-        public DataResult<List<Instructor>> GetAll()
+
+        public IResult Add(Instructor instructor)
+        {
+            _instructordal.Add(instructor);
+            return new SuccessResult(Messages.InstructorAdded);
+        }
+
+        public IResult Delete(Instructor instructor)
+        {
+            _instructordal.Delete(instructor);
+            return new SuccessResult(Messages.InstructorDeleted);
+        }
+
+        public IDataResult<List<Instructor>> GetAll()
         {
             return new SuccessDataResult<List<Instructor>>(_instructordal.GetAll(), Messages.CourseListed);
         }
 
-        public DataResult<Instructor> GetById(int id)
+        public IDataResult<Instructor> GetById(int id)
         {
             return new SuccessDataResult<Instructor>(_instructordal.Get(p => p.Id == id));
+        }
+
+        public IResult Update(Instructor instructor)
+        {
+            _instructordal.Update(instructor);
+            return new SuccessResult(Messages.InstructorUpdated);
         }
     }
 }

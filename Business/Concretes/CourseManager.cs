@@ -31,6 +31,12 @@ namespace Business.Concretes
             return new Result(true, Messages.CourseAdded);
         }
 
+        public IResult Delete(Course course)
+        {
+            _courseDal.Delete(course);
+                return new SuccessResult(Messages.CourseDeleted);
+        }
+
         public IDataResult<List<Course>> GetAll()
         {
             if (DateTime.Now.Hour == 3)
@@ -69,5 +75,10 @@ namespace Business.Concretes
             return new SuccessDataResult<List<CourseDetailDto>>(_courseDal.GetCourseDetails());
         }
 
+        public IResult Update(Course course)
+        {
+            _courseDal.Update(course);
+            return new SuccessResult(Messages.CourseUpdated);
+        }
     }
 }

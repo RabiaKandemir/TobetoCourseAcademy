@@ -10,9 +10,12 @@ namespace Business.Abstracts
 {
     public interface ICategoryService
     {
-      public DataResult<List<Category>> GetAll();
+        IDataResult<List<Category>> GetAll();
 
-       public DataResult<Category> GetById(int id);
+        IDataResult<Category> GetById(int id);
+        IResult Add(Category category);
+        IResult Update(Category category);
+        IResult Delete(Category category);
 
     }
 }

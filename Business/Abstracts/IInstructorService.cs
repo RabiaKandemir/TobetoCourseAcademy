@@ -10,8 +10,11 @@ namespace Business.Abstracts
 {
     public interface IInstructorService
     {
-        public DataResult<List<Instructor>> GetAll();
+        IDataResult<List<Instructor>> GetAll();
 
-        public DataResult<Instructor> GetById(int id);
+        IDataResult<Instructor> GetById(int id);
+        IResult Add(Instructor instructor);
+        IResult Update(Instructor instructor);
+        IResult Delete(Instructor instructor);
     }
 }

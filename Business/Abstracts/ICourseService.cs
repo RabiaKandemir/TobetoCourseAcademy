@@ -11,14 +11,16 @@ namespace Business.Abstracts
 {
     public interface ICourseService
     {
-        IDataResult<List<Course>> GetAll();
-
-        IDataResult<Course> GetById(int id);
 
         IDataResult<List<Course>> GetByCategory(int id);
 
         IDataResult<List<Course>> GetByUnitPrice(decimal min, decimal max);
         IDataResult<List<CourseDetailDto>> GetCourseDetails();
+        IDataResult<List<Course>> GetAll();
+
+        IDataResult<Course> GetById(int id);
         IResult Add(Course course);
+        IResult Update(Course course);
+        IResult Delete(Course course);
     }
 }
