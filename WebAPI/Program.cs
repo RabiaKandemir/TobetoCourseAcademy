@@ -1,6 +1,9 @@
 
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using Business.Abstracts;
 using Business.Concretes;
+using Business.DependecyResolvers.Autofac;
 using DataAccess.Abstracts;
 using DataAccess.Concretes.EntityFramework;
 
@@ -15,12 +18,10 @@ namespace WebAPI
             // Add services to the container.
 
             builder.Services.AddControllers();
-            builder.Services.AddSingleton<ICourseService, CourseManager>();
-            builder.Services.AddSingleton<ICourseDal, EfCourseDal>();
-            builder.Services.AddSingleton<ICategoryService, CategoryManager>();
-            builder.Services.AddSingleton<ICategoryDal, EfCategoryDal>();
-            builder.Services.AddSingleton<IInstructorService, InstructorManager>();
-            builder.Services.AddSingleton<IInstructorDal, EfInstructorDal>();
+            builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory()).ConfigureContainer<ContainerBuilder>(builder =>
+            {
+                builder.RegisterModule(new AutofacBusinessModule());
+            });
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
